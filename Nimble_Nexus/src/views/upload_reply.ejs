@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title><%= title %></title>
+
+		<link rel="stylesheet" href="/styles/upload_query.css" />
+		<link rel="icon" href="../public/images/logo.png" type="image/x-icon" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+			integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer" />
+		<script defer src="/scripts/global.js"></script>
+	</head>
+	<body>
+		<div class="logo">
+			<button class="toggle-slider" state="close">
+				<i class="fa-solid fa-bars"></i>
+			</button>
+			<span>Nimble Nexus</span>
+			<div class="sub-heading">Add Reply</div>
+		</div>
+
+		<%- include('components/navbar') %>
+		<!-- update from here -->
+		<div class="container">
+			<div class="notice-part">
+				<div class="form-title">Replying to</div>
+				<hr />
+				<div
+					class="query-container opened parent"
+					id="comment-<%= selected_query._id %>">
+					<div class="query-card">
+						<div class="query-header">
+							<img src="/images/logo.png" class="profile-pic" />
+							<span class="profile-name"
+								><%= selected_query.userName %></span
+							>
+						</div>
+						<div class="query-title mar">
+							<span class="bold">Title:</span>
+							<span class="title not-bold"
+								><%= selected_query.title %></span
+							>
+						</div>
+						<div class="query-desc mar">
+							<span class="bold">Description:</span>
+							<span class="query-body not-bold"
+								><%= selected_query.desc %></span
+							>
+						</div>
+						<div class="notice-name mar">
+							<span class="bold">Notice Name: </span>
+							<span class="notice-name not-bold"
+								><%= selected_query.noticeName
+								%>
+						</div>
+						<div class="notice-dep mar">
+							<span class="bold">Department:</span>
+							<span class="department not-bold"
+								><%= selected_query.noticeDep %></span
+							>
+						</div>
+	
+					</div>
+				</div>
+			</div>
+			<form
+				method="post"
+				action="/upload_reply/<%= queryId %>"
+				class="forms">
+				<div class="form-title">Reply</div>
+				<hr />
+
+				<label for="desc">Description:</label>
+				<input
+					id="desc"
+					type="text"
+					class="input-field"
+					name="desc"
+					required />
+
+				<button class="submit" type="submit">Submit</button>
+			</form>
+		</div>
+	</body>
+</html>
